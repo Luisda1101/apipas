@@ -59,10 +59,23 @@ def get_barbersForMoreVariables():
         exception("[SERVER]: Error ->")
         return jsonify({"msg": "Ha ocurrido un error"}), 500
 
-#@app.route("/api/addbarber", methods=["POST"])
-#hola como estas
+@app.route("/api/addbarber", methods=["POST"])
+def addbarber():
+    try:
+        name = request.form["name"]
+        service = request.form["service"]
+        service_value = request.form["service_value"]
+        
+        barber = Barbers(name, service, float(service_value))
+        db.session.add(barber)
+        db.session.commit()
+        
+        return jsonify(barber.serialize()), 200
+    except Exception:
+        exception("\n[SERVER]: Error in route /api/addbarber. Log: \n")
+        return jsonify({"msg": "Algo ha salido mal"}), 500
 
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
-    #app.run(debug=True, port=5000)
+    #app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
+    app.run(debug=True, port=5000)

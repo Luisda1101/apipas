@@ -8,6 +8,8 @@ class Barbers(db.Model):
     service = db.Column(db.String(200))
     service_value = db.Column(db.Float, nullable=False)
     
+    def __init__()
+    
     def __str__(self):
         return f'Barbero: {self.name} - Servicio: {self.service} - Valor del servicio: {self.service_value}'
 

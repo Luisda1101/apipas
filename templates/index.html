@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BARBERIA GOAT</title>
+</head>
+<body>
+    <h1 style="text-align: center;">Barbería GOAT</h1>
+    <h2>Añade un nuevo barbero</h2>
+
+    <form action="/api/addbarber" method="post">
+        <label for="name">Nombre:</label><br>
+        <input type="text" name="name" id="name" required value="Luis..."><br>
+
+        <label for="service">Servicio:</label><br>
+        <input type="text" name="service" id="service" required value="Barba..."><br>
+
+        <label for="service_value">Valor del servicio:</label><br>
+        <input type="float" name="service_value" id="service_value" required value="0"><br><br>
+
+        <input type="submit" value="Enviar">
+    </form>
+</body>
+</html>
