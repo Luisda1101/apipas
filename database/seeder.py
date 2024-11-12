@@ -7,7 +7,7 @@ DB_PATH = "C:\\Users\\luisd\\OneDrive\\Escritorio\\Programación\\Proyecto PAS (
 def createDB():
     conn = sql.connect(DB_PATH)
     cursor = conn.cursor()
-    cursor.execute("""CREATE TABLE streamers (
+    cursor.execute("""CREATE TABLE barbers (
         name String,
         service String,
         service_value float
@@ -20,13 +20,11 @@ def addValues():
     conn = sql.connect(DB_PATH)
     cursor = conn.cursor()
     data = [
-        ("alexelcapo", 10000, 800000),
-        ("ibai", 25000, 7000000),
-        ("elxokas", 10000, 1000000),
-        ("auronplay", 20000, 8000000),
-        ("cristinini", 5500, 3000000)
+        ("Luis Vergara", "Corte", 10000),
+        ("Juan Salgado", "Barba", 6000),
+        ("Angel Mendoza", "Cejas", 4000)
     ]
-    cursor.executemany("""INSERT INTO streamers VALUES (?, ?, ?)""", data)
+    cursor.executemany("""INSERT INTO barbers VALUES (?, ?, ?)""", data)
     conn.commit()
     conn.close()
 
