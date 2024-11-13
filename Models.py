@@ -8,7 +8,11 @@ class Barbers(db.Model):
     service = db.Column(db.String(200))
     service_value = db.Column(db.Float, nullable=False)
     
-    def __init__()
+    def __init__(self, name, service, service_value):
+        super().__init__()
+        self.name = name
+        self.service = service
+        self.service_value = service_value
     
     def __str__(self):
         return f'Barbero: {self.name} - Servicio: {self.service} - Valor del servicio: {self.service_value}'

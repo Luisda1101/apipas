@@ -13,6 +13,11 @@ db.init_app(app)
 def home():
     return render_template("index.html")
 
+@app.route("/searchbarber", methods=["GET"])
+def searchbarber():
+    return render_template("searchbarber.html")
+    
+
 @app.route("/api/barbers", methods=["GET"])
 def get_barbers():
     try:
@@ -74,7 +79,20 @@ def addbarber():
     except Exception:
         exception("\n[SERVER]: Error in route /api/addbarber. Log: \n")
         return jsonify({"msg": "Algo ha salido mal"}), 500
-
+    
+@app.route("/api/searchbarber", methods=["POST"])
+def searchBarberForm():
+    try:
+        nameBarber = request.form["name"]
+        
+        barber = Barbers.query.filter(Barbers.name.like(f"%{nameBarber}%")).first()
+        if not barber:
+            return jsonify({"msg": "Este barbero no existe"}), 200
+        else:
+            return  jsonify(barber.serialize()), 200
+    except Exception:
+        exception("[SERVER]: Error in route /api/searchbarber->")
+        return jsonify({"msg": "Ha ocurrido un error"}), 500
 
 if __name__ == "__main__":
     #app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
